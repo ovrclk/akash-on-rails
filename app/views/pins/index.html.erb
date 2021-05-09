@@ -1,18 +1,45 @@
 <% @pins.each do |pin| %>
-  <p>
-    <%= pin.title %><br />
-    <%= simple_format pin.description %><br />
-    <%= link_to pin.link %><br />
-    <%= image_tag pin.image_url(:small) if pin.image(:small) %><br />
-    <%= link_to 'Delete', pin_path(pin), method: :delete %>
-  </p>
+  <div class="card" style="width: 18rem;">
+    <%= image_tag pin.image_url(:small), class: 'card-img-top' if pin.image(:small) %>
+    <div class="card-body">
+      <h5 class="card-title"><%= pin.title %></h5>
+      <p class="card-text"><%= simple_format pin.description %></p>
+      <div class="btn-toolbar">
+        <div class="btn-group me-2">
+          <%= link_to 'Visit', pin.link, class: 'btn btn-primary', target: :blank %>
+        </div>
+        <div class="btn-group me-2">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Actions
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><%= link_to 'Delete', pin_path(pin), method: :delete, class: 'dropdown-item' %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+<hr />
 
 <%= form_for @pin do |f| %>
   <%= f.hidden_field :image, value: @pin.cached_image_data %>
-  <%= f.text_field :title %>
-  <%= f.text_area :description %>
-  <%= f.text_field :link %>
-  <%= f.file_field :image %>
-  <%= f.submit %>
+  <div class="mb-3">
+    <%= f.label :title, 'Title', class: 'form-label' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :description, 'Description', class: 'form-label' %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :link, 'Link', class: 'form-label' %>
+    <%= f.text_field :link, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :image, 'Image', class: 'form-label' %>
+    <%= f.file_field :image, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Create', class: 'btn btn-primary' %>
 <% end  %>

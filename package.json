@@ -1,5 +1,7 @@
 {
   "name": "pinkash",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^5.0.0"
+  }
 }
