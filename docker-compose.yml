@@ -7,18 +7,26 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgres
+      - scheduler
     ports:
       - "3005:3000"
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
-      - node_modules:/app/node_modules
     env_file: .env
 
   postgres:
-    image: postgres:12.1
+    image: postgres:12.6
     volumes:
       - db_data:/var/lib/postgresql/data
+    env_file: .env
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile-scheduler
+    depends_on:
+      - postgres
     env_file: .env
 
 volumes:
