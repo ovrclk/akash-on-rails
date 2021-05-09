@@ -1,0 +1,18 @@
+<% @pins.each do |pin| %>
+  <p>
+    <%= pin.title %><br />
+    <%= simple_format pin.description %><br />
+    <%= link_to pin.link %><br />
+    <%= image_tag pin.image_url(:small) if pin.image(:small) %><br />
+    <%= link_to 'Delete', pin_path(pin), method: :delete %>
+  </p>
+<% end %>
+
+<%= form_for @pin do |f| %>
+  <%= f.hidden_field :image, value: @pin.cached_image_data %>
+  <%= f.text_field :title %>
+  <%= f.text_area :description %>
+  <%= f.text_field :link %>
+  <%= f.file_field :image %>
+  <%= f.submit %>
+<% end  %>
