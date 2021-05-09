@@ -17,6 +17,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: <%= ENV['DATABASE_USER'] || 'pinkash' %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST'] || 'postgres' %>
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -81,5 +85,3 @@ test:
 production:
   <<: *default
   database: pinkash_production
-  username: pinkash
-  password: <%= ENV['PINKASH_DATABASE_PASSWORD'] %>
