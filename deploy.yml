@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   app:
-    image: tombeynon/pinkash:v0.0.13
+    image: tombeynon/pinkash:v0.0.14
     env:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
@@ -21,7 +21,7 @@ services:
         to:
           - global: true
   cron:
-    image: tombeynon/pinkash:v0.0.13
+    image: tombeynon/pinkash:v0.0.14
     # command:
     #   - "/scripts/run-scheduler.sh"
     env:

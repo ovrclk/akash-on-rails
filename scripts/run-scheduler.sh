@@ -2,6 +2,8 @@
 
 set -e
 
+export SECRET_KEY_BASE=$(rake secret)
+
 # prepare and restore database
 rake db:create
 /scripts/restore-postgres.sh

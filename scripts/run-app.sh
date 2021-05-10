@@ -3,6 +3,7 @@
 set -e
 
 export RAILS_SERVE_STATIC_FILES=true
+export SECRET_KEY_BASE=$(rake secret)
 
 rake assets:precompile
 
