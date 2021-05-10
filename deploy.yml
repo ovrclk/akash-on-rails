@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   app:
-    image: tombeynon/pinkash:v0.0.6
+    image: tombeynon/pinkash:v0.0.12
     env:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
@@ -21,8 +21,11 @@ services:
         to:
           - global: true
   cron:
-    image: tombeynon/pinkash:scheduler-v0.0.6
+    image: tombeynon/pinkash:v0.0.11
+    # command:
+    #   - "/scripts/run-scheduler.sh"
     env:
+      - CONTEXT=scheduler # workaround command
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DATABASE=pinkash_production
