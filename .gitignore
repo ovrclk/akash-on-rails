@@ -29,3 +29,4 @@
 
 .vim
 .env
+deploy.secret.yml

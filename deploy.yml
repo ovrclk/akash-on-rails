@@ -1,0 +1,99 @@
+---
+version: "2.0"
+
+services:
+  app:
+    image: tombeynon/pinkash:v0.0.6
+    env:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=pinkash_production
+      - POSTGRES_PORT=5432
+      - FILEBASE_BUCKET=pinkash
+      - FILEBASE_KEY=KEY
+      - FILEBASE_SECRET=SECRET
+      - PASSPHRASE=passphrase
+    depends_on:
+      - service: postgres
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+  cron:
+    image: tombeynon/pinkash:scheduler-v0.0.6
+    env:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=pinkash_production
+      - POSTGRES_PORT=5432
+      - FILEBASE_BUCKET=pinkash
+      - FILEBASE_KEY=KEY
+      - FILEBASE_SECRET=SECRET
+      - PASSPHRASE=passphrase
+    # depends_on:
+    #   - service: postgres
+  postgres:
+    image: postgres:12.6
+    env:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test
+    expose:
+      - port: 5432
+        proto: tcp
+        to:
+          - service: app
+          # - service: cron
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 1Gi
+    cron:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    postgres:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        app:
+          denom: uakt
+          amount: 10
+        cron:
+          denom: uakt
+          amount: 10
+        postgres:
+          denom: uakt
+          amount: 10
+
+deployment:
+  app:
+    dcloud:
+      profile: app
+      count: 1
+  cron:
+    dcloud:
+      profile: cron
+      count: 1
+  postgres:
+    dcloud:
+      profile: postgres
+      count: 1

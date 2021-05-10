@@ -12,8 +12,9 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN unzip awscliv2.zip
 RUN ./aws/install --bin-dir /usr/bin
 
+COPY ./scripts/run-app.sh scripts/run-app.sh
 COPY ./scripts/restore-postgres.sh scripts/restore-postgres.sh
-RUN chmod +x scripts/restore-postgres.sh
+RUN chmod +x scripts/run-app.sh scripts/restore-postgres.sh
 
 ENV BUNDLER_VERSION 2.2.15
 RUN gem update --system --quiet && gem install bundler -v "$BUNDLER_VERSION"
@@ -30,10 +31,10 @@ RUN yarn install
 
 COPY . ./
 
-RUN chmod +x entrypoint.sh scripts/run-app.sh
+RUN chmod +x entrypoint.sh
 
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["/scripts/run-app.sh"]
 
 ENTRYPOINT ["./entrypoint.sh"]

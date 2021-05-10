@@ -5,9 +5,11 @@ set -e
 export RAILS_ENV=production
 export RAILS_SERVE_STATIC_FILES=true
 
+rake db:create
+
 /scripts/restore-postgres.sh
 
-rake db:create db:migrate db:seed
+rake db:migrate db:seed
 
 rake assets:precompile
 

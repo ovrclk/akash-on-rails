@@ -19,4 +19,4 @@ COPY ./scripts/scheduler-crontab /etc/cron.d/scheduler
 RUN chmod +x /etc/cron.d/scheduler
 RUN crontab /etc/cron.d/scheduler
 
-ENTRYPOINT /scripts/run-scheduler.sh
+CMD ["/scripts/run-scheduler.sh"]
