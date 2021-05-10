@@ -2,7 +2,6 @@
 
 set -e
 
-export RAILS_ENV=production
 export RAILS_SERVE_STATIC_FILES=true
 
 rake assets:precompile

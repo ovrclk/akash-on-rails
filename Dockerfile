@@ -35,9 +35,10 @@ COPY . ./
 
 RUN chmod +x entrypoint.sh
 
+ENV RAILS_ENV production
 EXPOSE 3000
 
-ENTRYPOINT ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
 
 ARG CONTEXT=app
 ENV CONTEXT=${CONTEXT}

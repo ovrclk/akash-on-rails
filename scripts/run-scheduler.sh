@@ -2,8 +2,6 @@
 
 set -e
 
-export RAILS_ENV=production
-
 # prepare and restore database
 rake db:create
 /scripts/restore-postgres.sh
