@@ -2,6 +2,9 @@
   "name": "pinkash",
   "private": true,
   "dependencies": {
-    "bootstrap": "^5.0.0"
+    "bootstrap": "^5.0.0",
+    "imagesloaded": "^4.1.4",
+    "jquery": "^3.6.0",
+    "masonry-layout": "^4.2.2"
   }
 }
