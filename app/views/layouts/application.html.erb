@@ -16,19 +16,26 @@
       </a>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-secondary">My Pins</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+        <li>
+          <%= link_to 'Home', root_path, class: 'nav-link px-2 link-secondary' %>
+        </li>
+        <% if current_user %>
+          <li>
+            <%= link_to 'My Pins', pins_path(user_id: current_user.id), class: 'nav-link px-2 link-secondary' %>
+          </li>
+        <% end %>
+        <li>
+          <%= link_to 'About', '#', class: 'nav-link px-2 link-secondary' %>
+        </li>
       </ul>
 
       <div class="col-md-3 text-end">
         <% if current_user %>
           <div class="btn-group pl-5">
-            <%= button_to 'Logout', 'auth/logout', method: :get, class: 'btn btn-outline-primary me-2' %>
+            <%= button_to 'Logout', '/auth/logout', method: :get, class: 'btn btn-outline-primary me-2' %>
           </div>
         <% else %>
-          <%= button_to 'Login', 'auth/auth0', method: :post, class: 'btn btn-outline-primary me-2' %>
-          <%# <button type="button" class="btn btn-primary">Sign-up</button> %>
+          <%= button_to 'Login', '/auth/auth0', method: :post, class: 'btn btn-outline-primary me-2' %>
         <% end %>
       </div>
     </header>

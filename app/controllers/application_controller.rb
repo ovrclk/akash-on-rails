@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
   helper_method :current_user
+
+  def require_user
+    return if current_user
+
+    redirect_to root_path, flash: { alert: 'Please login first' }
+  end
 end
