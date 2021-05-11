@@ -1,8 +1,10 @@
 class Auth0Controller < ApplicationController
   def callback
-    # Refer to https://github.com/auth0/omniauth-auth0#authentication-hash for complete information on 'omniauth.auth' contents.
     auth_info = request.env['omniauth.auth']
-    session[:userinfo] = auth_info['extra']['raw_info']
+    @current_user = User.find_or_create_by(uid: auth_info[:uid]) do |user|
+      user.nickname = auth_info[:extra][:raw_info][:nickname]
+    end
+    session[:user_id] = @current_user.id
 
     redirect_to root_path
   end
