@@ -40,6 +40,9 @@ gem 'aws-sdk-s3', '~> 1.14'
 gem 'image_processing', '~> 1.8'
 gem 'shrine', '~> 3.0'
 
+gem 'omniauth-auth0', '~> 2.5'
+gem 'omniauth-rails_csrf_protection', '~> 0.1'
+
 gem 'whenever', require: false
 
 group :development, :test do

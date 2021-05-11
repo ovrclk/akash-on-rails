@@ -18,6 +18,8 @@ services:
     expose:
       - port: 3000
         as: 80
+        accept:
+          - pin.akash.host
         to:
           - global: true
   cron:

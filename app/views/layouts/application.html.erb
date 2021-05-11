@@ -22,8 +22,12 @@
       </ul>
 
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
+        <% if current_user %>
+          <%= button_to 'Logout', 'auth/logout', method: :get, class: 'btn btn-outline-primary me-2' %>
+        <% else %>
+          <%= button_to 'Login', 'auth/auth0', method: :post, class: 'btn btn-outline-primary me-2' %>
+          <%# <button type="button" class="btn btn-primary">Sign-up</button> %>
+        <% end %>
       </div>
     </header>
 
