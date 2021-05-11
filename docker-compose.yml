@@ -4,7 +4,6 @@ services:
   app:
     build:
       context: .
-    command: rails s -b 0.0.0.0
     depends_on:
       - postgres
       - scheduler
@@ -23,6 +22,9 @@ services:
       - CONTEXT=scheduler # workaround Akash command
     depends_on:
       - postgres
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle/gems
     env_file: .env
 
   postgres:

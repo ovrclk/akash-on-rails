@@ -6,17 +6,11 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 RUN curl -sS https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" | tee  /etc/apt/sources.list.d/pgdg.list
 
-RUN apt-get update -qq && apt-get install -y curl zip yarn postgresql-client-12 imagemagick cron
+RUN apt-get update -qq && apt-get install -y zip yarn postgresql-client-12 imagemagick cron
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip
 RUN ./aws/install --bin-dir /usr/bin
-
-COPY ./scripts/run-app.sh scripts/run-app.sh
-COPY ./scripts/run-scheduler.sh scripts/run-scheduler.sh
-COPY ./scripts/backup-postgres.sh scripts/backup-postgres.sh
-COPY ./scripts/restore-postgres.sh scripts/restore-postgres.sh
-RUN chmod +x scripts/run-app.sh scripts/run-scheduler.sh scripts/backup-postgres.sh scripts/restore-postgres.sh
 
 ENV BUNDLER_VERSION 2.2.15
 RUN gem update --system --quiet && gem install bundler -v "$BUNDLER_VERSION"
@@ -24,18 +18,19 @@ RUN gem update --system --quiet && gem install bundler -v "$BUNDLER_VERSION"
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-
 RUN bundle check || bundle install
 
 COPY package.json yarn.lock ./
-
 RUN yarn install
 
 COPY . ./
 
-RUN chmod +x entrypoint.sh
+COPY ./scripts /scripts
+RUN chmod +x /scripts/*.sh entrypoint.sh
 
 ENV RAILS_ENV production
+ENV RAILS_SERVE_STATIC_FILES true
+ENV RAILS_LOG_TO_STDOUT true
 EXPOSE 3000
 
 ENTRYPOINT ["./entrypoint.sh"]
