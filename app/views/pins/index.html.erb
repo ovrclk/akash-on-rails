@@ -11,7 +11,7 @@
             <div class="btn-group me-2">
               <%= link_to 'Visit', pin.link, class: 'btn btn-primary', target: :blank %>
             </div>
-            <% if pin.user == current_user %>
+            <% if current_user && (current_user.admin? || pin.user == current_user) %>
               <div class="btn-group me-2">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Actions

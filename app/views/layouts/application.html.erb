@@ -24,6 +24,11 @@
             <%= link_to 'My Pins', pins_path(user_id: current_user.id), class: 'nav-link px-2 link-secondary' %>
           </li>
         <% end %>
+        <% if current_user&.admin? %>
+          <li>
+            <%= link_to 'Users', users_path, class: 'nav-link px-2 link-secondary' %>
+          </li>
+        <% end %>
         <li>
           <%= link_to 'About', '#', class: 'nav-link px-2 link-secondary' %>
         </li>

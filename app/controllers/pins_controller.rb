@@ -12,8 +12,13 @@ class PinsController < ApplicationController
   end
 
   def destroy
-    current_user.pins.find(params[:id]).destroy
-    redirect_to root_path
+    @pin = Pin.find(params[:id])
+    if @pin.user == current_user || current_user.admin?
+      @pin.destroy
+      redirect_to root_path, flash: { notice: 'Pin deleted' }
+    else
+      redirect_to root_path, flash: { alert: 'You cannot delete that pin' }
+    end
   end
 
   private

@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nickname</th>
+      <th scope="col">Admin</th>
+      <th scope="col">Pins</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <th scope="row"><%= user.id %></th>
+        <td><%= user.nickname %></td>
+        <td><%= raw user.admin? ? '<i class="bi bi-check"></i>' : '<i class="bi bi-x"></i>' %></td>
+        <td><%= link_to user.pins.count, pins_path(user_id: user.id) %></td>
+        <td>
+          <div class="btn-group me-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Actions
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <% if user.admin? %>
+                <li><%= button_to 'Remove admin', user_path(user.id), params: {user: {admin: false}}, method: :patch, class: 'dropdown-item' %></li>
+              <% else %>
+                <li><%= button_to 'Make admin', user_path(user.id), params: {user: {admin: true}}, method: :patch, class: 'dropdown-item' %></li>
+              <% end %>
+              <li><%= link_to 'Delete', user_path(user), method: :delete, class: 'dropdown-item' %></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
