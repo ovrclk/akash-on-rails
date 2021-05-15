@@ -1,0 +1,6 @@
+<% if @pin.errors.any? %>
+  $('#pinForm').replaceWith("<%= j render "pins/form" %>");
+<% else %>
+  $('#pinList').replaceWith("<%= j render "pins/pins" %>");
+  $('#pinModal').modal('toggle');
+<% end %>

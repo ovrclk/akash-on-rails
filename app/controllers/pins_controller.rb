@@ -1,14 +1,33 @@
 class PinsController < ApplicationController
-  before_action :require_user, only: %i[create update destroy]
+  before_action :require_user, except: :index
 
   def index
     @pins = find_pins
+  end
+
+  def new
     @pin = Pin.new
   end
 
   def create
-    current_user.pins.create(pin_params)
-    redirect_to root_path
+    @pin = current_user.pins.create(pin_params)
+    @pins = find_pins
+  end
+
+  def edit
+    @pin = Pin.find(params[:id])
+    render 'new'
+  end
+
+  def update
+    @pin = Pin.find(params[:id])
+    if @pin.user == current_user || current_user.admin?
+      @pin.update(pin_params)
+      @pins = find_pins
+      render 'create'
+    else
+      raise ActionNotFound
+    end
   end
 
   def destroy
@@ -24,11 +43,9 @@ class PinsController < ApplicationController
   private
 
   def find_pins
-    if params[:user_id]
-      Pin.where(user_id: params[:user_id])
-    else
-      Pin.all
-    end
+    pins = Pin.order(created_at: :desc)
+    return pins unless  params[:user_id].present?
+    pins.where(user_id: params[:user_id])
   end
 
   def pin_params
