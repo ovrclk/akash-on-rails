@@ -12,14 +12,12 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery/dist/jquery.slim.min
-//= require bootstrap/dist/js/bootstrap.bundle
 //= require imagesloaded/imagesloaded.pkgd
 //= require masonry-layout/dist/masonry.pkgd
 //= require_tree .
 
-$(document).on('turbolinks:load', function() {
+$(document).on('ready', function() {
   // init Masonry
   var $grid = $('.grid').masonry({
     // options...
