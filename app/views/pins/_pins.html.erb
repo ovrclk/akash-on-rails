@@ -2,7 +2,9 @@
   <% @pins.each do |pin| %>
     <div class="col">
       <div class="card">
-        <%= image_tag pin.image_url(:small), class: 'card-img-top' if pin.image(:small) %>
+        <%= link_to pin.link, target: :blank do %>
+          <%= image_tag pin.image_url(:small), class: 'card-img-top' if pin.image(:small) %>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= pin.title %></h5>
           <h6><small>by <%= link_to pin.user.nickname, pins_path(user_id: pin.user_id) %></small></h6>
