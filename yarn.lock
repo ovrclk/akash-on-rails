@@ -17,12 +17,22 @@ ev-emitter@^1.0.0:
   resolved "https://registry.yarnpkg.com/ev-emitter/-/ev-emitter-1.1.1.tgz#8f18b0ce5c76a5d18017f71c0a795c65b9138f2a"
   integrity sha512-ipiDYhdQSCZ4hSbX4rMW+XzNKMD1prg/sTvoVmSLkuQ1MVlwjJQQA+sW8tMYR3BLUr9KjodFV4pvzunvRhd33Q==
 
+ev-emitter@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ev-emitter/-/ev-emitter-2.1.0.tgz#0feaf873003db49c92ceb7d448111a952fb25ce2"
+  integrity sha512-73qJdHUbyfA6ykAvWf4bBV7fQNYVOPd9nA3qfiQkgKVgIBKro/MAfJnZgyayWUapHU0Y5Qk9unofK3WirjkrVQ==
+
 fizzy-ui-utils@^2.0.0:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/fizzy-ui-utils/-/fizzy-ui-utils-2.0.7.tgz#7df45dcc4eb374a08b65d39bb9a4beedf7330505"
   integrity sha512-CZXDVXQ1If3/r8s0T+v+qVeMshhfcuq0rqIFgJnrtd+Bu8GmDmqMjntjUePypVtjHXKJ6V4sw9zeyox34n9aCg==
   dependencies:
     desandro-matches-selector "^2.0.0"
+
+fizzy-ui-utils@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/fizzy-ui-utils/-/fizzy-ui-utils-3.0.0.tgz#cc5e876eea263d3d92828a3144745dbd7b972fc8"
+  integrity sha512-uJj38QFQiJ/KCio5tiZhwAjIbTXSIgzBCKdKVbaYfLS053F6z23Nb0o1ZoO9gnxOQWN7BCc35jsvrCtAq3gY9g==
 
 get-size@^2.0.2:
   version "2.0.3"
@@ -35,6 +45,14 @@ imagesloaded@^4.1.4:
   integrity sha512-ltiBVcYpc/TYTF5nolkMNsnREHW+ICvfQ3Yla2Sgr71YFwQ86bDwV9hgpFhFtrGPuwEx5+LqOHIrdXBdoWwwsA==
   dependencies:
     ev-emitter "^1.0.0"
+
+infinite-scroll@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/infinite-scroll/-/infinite-scroll-4.0.1.tgz#093dafe2d86bf4cd27da3b920a46f898f22c939f"
+  integrity sha512-14Utu6d8g6mO5PmwUxfAUK5uaKdClIkrJqLmBYXj/AMBRy5ApsCWkkY84HvsSq4MM1A062gtf58S9OiD5WBfRA==
+  dependencies:
+    ev-emitter "^2.1.0"
+    fizzy-ui-utils "^3.0.0"
 
 jquery@^3.6.0:
   version "3.6.0"

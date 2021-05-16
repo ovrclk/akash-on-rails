@@ -40,6 +40,9 @@ gem 'aws-sdk-s3', '~> 1.14'
 gem 'image_processing', '~> 1.8'
 gem 'shrine', '~> 3.0'
 
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+
 gem 'petfinder'
 
 gem 'omniauth-auth0', '~> 2.5'

@@ -15,9 +15,10 @@
 //= require jquery/dist/jquery.slim.min
 //= require imagesloaded/imagesloaded.pkgd
 //= require masonry-layout/dist/masonry.pkgd
+//= require infinite-scroll/dist/infinite-scroll.pkgd
 //= require_tree .
 
-$(document).on('ready', function() {
+$(document).ready(function() {
   // init Masonry
   var $grid = $('.grid').masonry({
     // options...
@@ -26,4 +27,17 @@ $(document).on('ready', function() {
   $grid.imagesLoaded().progress( function() {
     $grid.masonry('layout');
   });
+
+  let msnry = $grid.data('masonry');
+
+  $grid.infiniteScroll({
+    // options
+    path: '.page-link[rel=next]',
+    append: '.col',
+    history: false,
+    status: '.page-load-status',
+    outlayer: msnry
+  });
+
+  $('.pinPagination').hide();
 })
