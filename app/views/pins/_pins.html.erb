@@ -1,7 +1,7 @@
 <div id="pinList" class="row row-cols-4 grid">
   <% @pins.each do |pin| %>
     <div class="col">
-      <div class="card">
+      <div class="card mb-4">
         <%= link_to pin.link, target: :blank do %>
           <%= image_tag pin.image_url(:small), class: 'card-img-top' if pin.image(:small) %>
         <% end %>

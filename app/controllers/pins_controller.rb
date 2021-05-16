@@ -44,7 +44,8 @@ class PinsController < ApplicationController
 
   def find_pins
     pins = Pin.order(created_at: :desc)
-    return pins unless  params[:user_id].present?
+    return pins unless params[:user_id].present?
+
     pins.where(user_id: params[:user_id])
   end
 
