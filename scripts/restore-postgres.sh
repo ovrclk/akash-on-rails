@@ -30,7 +30,7 @@ else
   )
 fi
 
-if [ -z "$aws_args" ]; then
+if [ -z "$key_suffix" ]; then
   echo "No backup found"
 else
   echo "Fetching backup from S3..."
