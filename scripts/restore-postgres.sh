@@ -30,25 +30,29 @@ else
   )
 fi
 
-echo "Fetching backup from S3..."
-aws $aws_args s3 cp "${s3_uri_base}/${key_suffix}" "db${file_type}"
+if [ -z "$aws_args" ]; then
+  echo "No backup found"
+else
+  echo "Fetching backup from S3..."
+  aws $aws_args s3 cp "${s3_uri_base}/${key_suffix}" "db${file_type}"
 
-if [ -n "$PASSPHRASE" ]; then
-  echo "Decrypting backup..."
-  gpg --decrypt --batch --passphrase "$PASSPHRASE" db.dump.gpg > db.dump
-  rm db.dump.gpg
+  if [ -n "$PASSPHRASE" ]; then
+    echo "Decrypting backup..."
+    gpg --decrypt --batch --passphrase "$PASSPHRASE" db.dump.gpg > db.dump
+    rm db.dump.gpg
+  fi
+
+  conn_opts=""
+
+  echo "Restoring from backup..."
+  pg_restore --clean \
+             -h postgres \
+             -p 5432 \
+             -U $POSTGRES_USER \
+             -d $POSTGRES_DATABASE \
+             $PG_RESTORE_EXTRA_OPTS \
+             --if-exists db.dump
+  rm db.dump
+
+  echo "Restore complete."
 fi
-
-conn_opts=""
-
-echo "Restoring from backup..."
-pg_restore --clean \
-           -h postgres \
-           -p 5432 \
-           -U $POSTGRES_USER \
-           -d $POSTGRES_DATABASE \
-           $PG_RESTORE_EXTRA_OPTS \
-           --if-exists db.dump
-rm db.dump
-
-echo "Restore complete."
