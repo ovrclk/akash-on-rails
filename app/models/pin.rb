@@ -3,5 +3,7 @@ class Pin < ApplicationRecord
 
   include PinUploader::Attachment(:image)
 
+  scope :recently_created, -> { order(created_at: :desc) }
+
   validates :title, :link, :image, presence: true
 end
