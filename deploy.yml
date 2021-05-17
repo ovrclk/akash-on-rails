@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   app:
-    image: tombeynon/pinkash:v0.0.14
+    image: tombeynon/pinkash:v0.0.18
     env:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
@@ -13,6 +13,9 @@ services:
       - FILEBASE_KEY=KEY
       - FILEBASE_SECRET=SECRET
       - PASSPHRASE=passphrase
+      - AUTH0_ID=key
+      - AUTH0_SECRET=secret
+      - AUTH0_DOMAIN=mydomain.us.auth0.com
     depends_on:
       - service: postgres
     expose:
@@ -23,7 +26,7 @@ services:
         to:
           - global: true
   cron:
-    image: tombeynon/pinkash:v0.0.14
+    image: tombeynon/pinkash:v0.0.18
     # command:
     #   - "/scripts/run-scheduler.sh"
     env:
