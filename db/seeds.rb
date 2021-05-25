@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.find_or_create_by(uid: 'auth0|609afb21a0b0bb006ad8c662') do |user|
-  user.nickname = 'tom'
-  user.admin = true
-end
-
 if ENV['PETFINDER_KEY'] && ENV['PETFINDER_SECRET']
+  user = User.find_or_create_by(uid: 'akash') do |user|
+    user.nickname = 'Akash'
+    user.admin = true
+  end
+
   Pin.destroy_all
 
   petfinder = Petfinder::Client.new(ENV['PETFINDER_KEY'], ENV['PETFINDER_SECRET'])
