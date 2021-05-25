@@ -3,13 +3,13 @@ version: "2.0"
 
 services:
   app:
-    image: tombeynon/pinkash:v0.0.20
+    image: tombeynon/akash-on-rails:v0.0.20
     env:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DATABASE=pinkash_production
+      - POSTGRES_DATABASE=akash_on_rails_production
       - POSTGRES_PORT=5432
-      - FILEBASE_BUCKET=pinkash
+      - FILEBASE_BUCKET=BUCKET
       - FILEBASE_KEY=KEY
       - FILEBASE_SECRET=SECRET
       - PASSPHRASE=passphrase
@@ -26,16 +26,16 @@ services:
         to:
           - global: true
   cron:
-    image: tombeynon/pinkash:v0.0.20
+    image: tombeynon/akash-on-rails:v0.0.20
     # command:
     #   - "/scripts/run-scheduler.sh"
     env:
       - CONTEXT=scheduler # workaround command
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DATABASE=pinkash_production
+      - POSTGRES_DATABASE=akash_on_rails_production
       - POSTGRES_PORT=5432
-      - FILEBASE_BUCKET=pinkash
+      - FILEBASE_BUCKET=BUCKET
       - FILEBASE_KEY=KEY
       - FILEBASE_SECRET=SECRET
       - PASSPHRASE=passphrase

@@ -28,9 +28,13 @@ COPY . ./
 COPY ./scripts /scripts
 RUN chmod +x /scripts/*.sh entrypoint.sh
 
+ENV POSTGRES_HOST=postgres
+ENV POSTGRES_PORT=5432
+ENV POSTGRES_USER=postgres
 ENV RAILS_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
+
 EXPOSE 3000
 
 ENTRYPOINT ["./entrypoint.sh"]

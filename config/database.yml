@@ -17,7 +17,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV['POSTGRES_USER'] || 'pinkash' %>
+  username: <%= ENV['POSTGRES_USER'] || 'postgres' %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   port: <%= ENV['POSTGRES_PORT'] || '5432' %>
   host: <%= ENV['POSTGRES_HOST'] || 'postgres' %>
@@ -27,13 +27,13 @@ default: &default
 
 development:
   <<: *default
-  database: pinkash_development
+  database: <%= ENV['POSTGRES_DATABASE'] || 'akash_on_rails_development' %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: pinkash
+  #username: akash_on_rails
 
   # The password associated with the postgres role (username).
   #password:
@@ -61,7 +61,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: pinkash_test
+  database: <%= ENV['POSTGRES_DATABASE'] || 'akash_on_rails_test' %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,4 +84,4 @@ test:
 #
 production:
   <<: *default
-  database: pinkash_production
+  database: <%= ENV['POSTGRES_DATABASE'] || 'akash_on_rails_production' %>
