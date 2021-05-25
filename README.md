@@ -1,5 +1,7 @@
 # Akash on Rails (Pinterest Clone)
 
+Demo: [pin.akash.host](https://pin.akash.host)
+
 This is an example Rails Pinterest clone hosted on Akash. There are a few extra features to make the most of decentralised hosting:
 
 - Database backup/restore to [Sia](https://sia.tech) via [Filebase](https://filebase.com)
