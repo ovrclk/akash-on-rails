@@ -13,5 +13,5 @@ jobs:
       - name: build
         run: |
           echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u "${{ secrets.CR_USER }}" --password-stdin
-          docker build . --tag ghcr.io/tombeynon/akash-on-rails:${GITHUB_REF#refs/tags/}
-          docker push ghcr.io/tombeynon/akash-on-rails:${GITHUB_REF#refs/tags/}
+          docker build . --tag ghcr.io/ovrclk/akash-on-rails:${GITHUB_REF#refs/tags/}
+          docker push ghcr.io/ovrclk/akash-on-rails:${GITHUB_REF#refs/tags/}

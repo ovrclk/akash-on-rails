@@ -21,9 +21,9 @@ This is an example Rails Pinterest clone hosted on Akash. There are a few extra 
 ### Cron container
 - Auto-restores the Postgres database on boot, achieving persistent database through re-deploys
 - Auto-backup of the database to [Filebase](https://filebase.com) every 15 minutes
-- Crontab is defined using [Whenever](https://github.com/javan/whenever) in [`schedule.rb`](https://github.com/tombeynon/pinkash/blob/master/config/schedule.rb)
+- Crontab is defined using [Whenever](https://github.com/javan/whenever) in [`schedule.rb`](config/schedule.rb)
 - Runs the same docker image as the rails application, but running `cron` instead of the rails server
-- A [standalone database backup/restore container](https://github.com/tombeynon/akash-postgres-restore) is also available
+- A [standalone database backup/restore container](https://github.com/ovrclk/akash-postgres-restore) is also available
 
 ### Postgres container
 - Runs a standard Postgres server docker image
