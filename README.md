@@ -50,27 +50,27 @@ Ultimately this repository is designed to provide a sensible example of hosting 
 
 ### Use the relevant files in your own project
 
-- Dockerfile
+- [Dockerfile](Dockerfile)
     - Rails ready Dockerfile
     - Installs the aws CLI tool to interact with [Filebase](https://filebase.com)
-- scripts/run-app.sh
+- [scripts/run-app.sh](scripts/run-app.sh)
     - Precompiles rails assets
     - Runs the rails server
-- scripts/run-scheduler.sh
+- [scripts/run-scheduler.sh](scripts/run-scheduler.sh)
     - Creates and restores the database
     - Runs rake db:migrate and db:seed
     - Sets the crontab using [Whenever](https://github.com/javan/whenever) and runs the cron service
-- scripts/restore-postgres.sh
+- [scripts/restore-postgres.sh](scripts/restore-postgres.sh)
     - Downloads latest backup from [Filebase](https://filebase.com)
     - Restore the DB if a backup was found
-- scripts/backup-postgres.sh
+- [scripts/backup-postgres.sh](scripts/backup-postgres.sh)
     - Backs up the database to [Filebase](https://filebase.com)
     - Deletes backups older than KEEP_BACKUPS
-- config/schedule.rb
+- [config/schedule.rb](config/schedule.rb)
     - [Whenever](https://github.com/javan/whenever) cron schedule file to run scripts/backup-postgres.sh every 15 minutes
-- config/initializers/shrine.rb
+- [config/initializers/shrine.rb](config/initializers/shrine.rb)
     - Configures Shrine within the application to use [Filebase](https://filebase.com) as an S3 host
-- deploy.yml
+- [deploy.yml](deploy.yml)
     - Akash deploy manifest
 
 ### Clone the repository and use as a base for a new project
