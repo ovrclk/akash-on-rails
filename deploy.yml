@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   app:
-    image: ghcr.io/ovrclk/akash-on-rails:v0.0.21
+    image: ghcr.io/ovrclk/akash-on-rails:v0.0.22
     env:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
@@ -25,7 +25,7 @@ services:
         to:
           - global: true
   cron:
-    image: ghcr.io/ovrclk/akash-on-rails:v0.0.21
+    image: ghcr.io/ovrclk/akash-on-rails:v0.0.22
     # command:
     #   - "/scripts/run-scheduler.sh"
     env:
